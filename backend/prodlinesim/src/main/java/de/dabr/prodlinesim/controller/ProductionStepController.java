@@ -1,62 +1,46 @@
 package de.dabr.prodlinesim.controller;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import de.dabr.prodlinesim.model.Employee;
 import de.dabr.prodlinesim.model.ProductionStep;
-import de.dabr.prodlinesim.repository.EmployeeRepository;
-import de.dabr.prodlinesim.repository.ProductionStepRepository;
+import de.dabr.prodlinesim.service.ProductionStepService;
 
-@RestController("/production-step")
+@RestController
+@RequestMapping("/production-step")
 public class ProductionStepController {
 
-    private final ProductionStepRepository productionStepRepository;
-    private final EmployeeRepository employeeRepository;
+    private final ProductionStepService productionStepService;
 
-    public ProductionStepController(ProductionStepRepository productionStepRepository,
-            EmployeeRepository employeeRepository) {
-        this.productionStepRepository = productionStepRepository;
-        this.employeeRepository = employeeRepository;
+    public ProductionStepController(ProductionStepService productionStepService) {
+        this.productionStepService = productionStepService;
     }
 
     @GetMapping("/findall")
     public List<ProductionStep> findAllProductionSteps() {
-        return productionStepRepository.findAll();
+        return productionStepService.findAllProductionSteps();
     }
 
     @PutMapping("/addnew")
-    public ResponseEntity<ProductionStep> addNewProductionStep(@RequestParam String productionStepName) {
-        ProductionStep productionStep = new ProductionStep(productionStepName, null);
-        ProductionStep newProductionStep = productionStepRepository.save(productionStep);
-        return ResponseEntity.status(HttpStatus.CREATED).body(newProductionStep);
+    public ResponseEntity<?> addNewProductionStep(@RequestParam String productionStepName) {
+        return productionStepService.addNewProductionStep(productionStepName);
     }
 
     @PutMapping("/add-employee-to-productionstep")
-    public ResponseEntity<ProductionStep> addEmployeeToProductionStep(@RequestParam Long employeeId, @RequestParam Long productionStepId) {
-        Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
-        Optional<ProductionStep> optionalProductionStep = productionStepRepository.findById(productionStepId);
-
-        if (optionalEmployee.isPresent()) {
-            Employee employee = optionalEmployee.get();
-            if (optionalProductionStep.isPresent()) {
-                ProductionStep productionStep = optionalProductionStep.get();
-                productionStep.addEmployeeToProductionStep(employee);
-                return ResponseEntity.ok().build();
-            } else {
-                return ResponseEntity.badRequest().build();
-            }
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
+    public ResponseEntity<ProductionStep> addEmployeeToProductionStep(@RequestParam Long employeeId,
+            @RequestParam Long productionStepId) {
+        return productionStepService.addEmployeeToProductionStep(employeeId, productionStepId);
     }
 
+    @DeleteMapping("/delete-employee-from-productionstep")
+    public ResponseEntity<ProductionStep> removeEmployeeFromProductionStep(@RequestParam Long employeeId, @RequestParam Long productionStepId) {
+        return productionStepService.removeEmployeeFromProductionStep(employeeId, productionStepId);
+    }
 }

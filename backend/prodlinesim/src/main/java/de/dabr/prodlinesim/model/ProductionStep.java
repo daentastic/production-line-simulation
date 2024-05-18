@@ -47,8 +47,5 @@ public class ProductionStep {
                 enfe.printStackTrace();
             }
         } 
-    }
-
-
-    
+    }    
 }
