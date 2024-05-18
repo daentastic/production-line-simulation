@@ -1,0 +1,35 @@
+#employees {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  
+  #employees h2 {
+    color: #58a6ff;
+  }
+  
+  #employees table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  #employees th,
+  #employees td {
+    padding: 8px 12px;
+    border: 1px solid #30363d;
+  }
+  
+  #employees th {
+    background-color: #0d1117;
+  }
+  
+  #employees tbody tr:nth-child(even) {
+    background-color: #161b22;
+  }
+  
+  #employees tbody tr:hover {
+    background-color: #21262d;
+  }
+  

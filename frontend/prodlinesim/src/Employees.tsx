@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import "../src/styling/Employees.css"
 
 const Employees: React.FC = () => {
 
@@ -19,7 +20,7 @@ const Employees: React.FC = () => {
     }, [])
 
     return (
-        <div className="employee-table">
+        <div id="employees">
             <h2>All Employees</h2>
             <table>
                 <thead>

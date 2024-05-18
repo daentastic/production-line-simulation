@@ -1,12 +1,5 @@
-#### What is this project all about ?
-Implementing advanced knowledge of SpringBoot + React to deliver a full fledged web application
+### SpringBoot + React WebApplication
 
-
-#### What features should be implemented ?
-1. Spring Security
-2. DTO Structure 
-3. User Account creation / Admin Mode
-4. Relevant dependencies like: lombok, swagger-ui, h2 database
-5. Docker & Docker-Compose
-6. Azure Deployment 
-7. Etc. 
+1. Threads for synchronized & parallel execution of production steps
+2. Communication between frontend & backend via APIs 
+3. Persistance within database
