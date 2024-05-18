@@ -24,9 +24,14 @@ public class EmployeeController {
     public List<Employee> findAllEmployees() {
         return employeeService.findAllEmployees();
     }
-    //PutMapping instead of PostMapping -> Put is idempotent -> Multiple triggers produce the same result
+    
     @PutMapping("/new-employee")
     public void addNewEmployee(String firstName, String lastName) {
         employeeService.addNewEmployee(firstName, lastName);
+    }
+
+    @PutMapping("/start-working") 
+    public void startEmployeeWork() {
+    
     }
 }
