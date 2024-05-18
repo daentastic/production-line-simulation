@@ -2,7 +2,10 @@ package de.dabr.prodlinesim.service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
+import org.springdoc.api.ErrorMessage;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import de.dabr.prodlinesim.model.Employee;
@@ -29,8 +32,18 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public void addNewEmployee(String firstName, String lastName) {
-        employeeRepository.save(new Employee(firstName, lastName));
+    public ResponseEntity<?> addNewEmployee(String firstName, String lastName) {
+        Optional<Employee> optionalEmployee = employeeRepository.findByFirstNameAndLastName(firstName, lastName);
+        
+        if (!optionalEmployee.isPresent()) {
+            Employee employee = new Employee();
+            employee.setFirstName(firstName);
+            employee.setLastName(lastName);
+            employeeRepository.save(employee);
+            return ResponseEntity.ok(employee);
+        } else {
+            return ResponseEntity.badRequest().body(new ErrorMessage("Already in database"));
+        }
     }
 
 }

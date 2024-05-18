@@ -1,12 +1,18 @@
-import './App.css'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "./Header";
+import Employees from "./Employees";
+import ProductionSteps from "./ProductionSteps";
 
-function App() {
+const App: React.FC = () => {
 
-  return (
-    <>
-     <h1>Hello World!</h1>
-    </>
-  )
-}
+  return (<BrowserRouter>
+    <div>
+      <Header />
+      <Routes>
+        <Route path="/productionsteps" element={<ProductionSteps />} />
+        <Route path="/employees" element={<Employees />} />
+      </Routes>
+    </div>
+  </BrowserRouter>)}
 
-export default App
+export default App;
