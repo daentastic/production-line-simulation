@@ -3,33 +3,62 @@
     color: #c9d1d9;
     padding: 20px;
     border-radius: 8px;
-    margin-top: 20px;
-  }
-  
-  #employees h2 {
+    margin-top: 10px;
+}
+
+#employees h2 {
     color: #58a6ff;
-  }
-  
-  #employees table {
+    text-align: center;
+}
+
+#employees table {
     width: 100%;
     border-collapse: collapse;
-  }
-  
-  #employees th,
-  #employees td {
+}
+
+#employees th,
+#employees td {
     padding: 8px 12px;
     border: 1px solid #30363d;
-  }
-  
-  #employees th {
+}
+
+#employees th {
     background-color: #0d1117;
-  }
-  
-  #employees tbody tr:nth-child(even) {
+}
+
+#employees tbody tr:nth-child(even) {
     background-color: #161b22;
-  }
-  
-  #employees tbody tr:hover {
+}
+
+#employees tbody tr:hover {
     background-color: #21262d;
-  }
-  
+}
+
+button {
+    font-size: 15px;
+    background-color: #0d1117;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.new-employee-clicked {
+    background-color: red;
+    color: white;
+}
+
+button:hover {
+    background-color: #58a6ff;
+    color: black;
+}
+
+.new-employee-label input {
+    color: white;
+    border: none;
+    background-color: #21262d;
+    margin-right: 10px;
+}

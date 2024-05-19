@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
+import '../styling/Employees.css'
+import NewEmployee from "./NewEmployee"
 
-const ProductionStep: React.FC = () => {
+const Employees: React.FC = () => {
 
     interface Employee {
         id: number,
@@ -9,7 +11,16 @@ const ProductionStep: React.FC = () => {
     }
 
     const [employees, setEmployees] = useState<Employee[]>([]);
-    const [newProductionStep, setNewProductionStep] = useState(false);
+    const [newEmployeeField, setNewEmployeeField] = useState(false);
+
+    const handleNewEmployeeClick = () => {
+        setNewEmployeeField(state => !state);
+    }
+
+    const handleRemoveEmployee = (id: number) => {
+
+
+    }
 
     useEffect(() => {
         fetch("http://localhost:8080/employee/show-all")
@@ -17,26 +28,23 @@ const ProductionStep: React.FC = () => {
             .then(data => {
                 setEmployees(data);
             }).catch(error => console.log("Error fetching employees: ", error))
-    }, [])
-
-    const handleProductionStepClick = () => {
-        setNewProductionStep(state => !state);
-    }
+    }, [handleNewEmployeeClick])
 
     return (
-        <div id="productionsteps">
+        <div id="employees">
             <h2>All Employees</h2>
-            <button onClick={handleProductionStepClick} 
-            className={newProductionStep ? 'clicked' : ''}>
-            {newProductionStep ? 'Cancel' : 'New Employee'}
+            <button onClick={handleNewEmployeeClick} 
+            className={newEmployeeField ? 'new-employee-clicked' : ''}>
+            {newEmployeeField ? 'Cancel' : 'New Employee'}
             </button>
-            {/* {newProductionStep && <NewEmployee />}
+            {newEmployeeField && <NewEmployee />}
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
+                        <th>Edit</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,12 +52,13 @@ const ProductionStep: React.FC = () => {
                         <td>{employee.id}</td>
                         <td>{employee.firstName}</td>
                         <td>{employee.lastName}</td>
+                        <td><button onClick={() => {handleRemoveEmployee(employee.id)}}>Remove</button></td>
                     </tr>
                     ))}
                 </tbody>
-            </table>*/}
-        </div> 
+            </table>
+        </div>
     )
 }
 
-export default ProductionStep
+export default Employees

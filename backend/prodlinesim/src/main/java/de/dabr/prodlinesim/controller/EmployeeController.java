@@ -7,11 +7,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import de.dabr.prodlinesim.DTOs.EmployeeDTO;
 import de.dabr.prodlinesim.model.Employee;
 import de.dabr.prodlinesim.service.EmployeeService;
+
 
 @RestController
 @RequestMapping("/employee")
@@ -31,8 +34,8 @@ public class EmployeeController {
     }
     
     @PostMapping("/new-employee")
-    public ResponseEntity<?> addNewEmployee(String firstName, String lastName) {
-        return employeeService.addNewEmployee(firstName, lastName);
+    public ResponseEntity<?> addNewEmployee(@RequestBody EmployeeDTO employeeDTO) {
+        return employeeService.addNewEmployee(employeeDTO);
     }
 
     @PutMapping("/start-working") 

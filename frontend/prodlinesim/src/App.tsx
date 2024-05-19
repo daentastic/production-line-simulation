@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./Header";
-import Employees from "./Employees";
+import Employees from "./employees/Employees";
 import ProductionSteps from "./ProductionSteps";
 
 const App: React.FC = () => {

@@ -1,16 +1,17 @@
 .nav-list button {
     font-size: 15px;
-    background-color: #0d1117;
-    color: #c9d1d9;
+    background-color: #77bdfb;
+    color: black;
     border: 1px solid #30363d;
     border-radius: 8px;
     padding: 8px 12px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-right: 10px;
   }
   
   .nav-list button:hover {
-    background-color: #58a6ff;
+    background-color: #7ce38b;
     color: black;
   }
   
