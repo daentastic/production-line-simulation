@@ -7,6 +7,8 @@ import java.util.Optional;
 import org.springdoc.api.ErrorMessage;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import de.dabr.prodlinesim.DTOs.EmployeeDTO;
 import de.dabr.prodlinesim.model.Employee;
 import de.dabr.prodlinesim.repository.EmployeeRepository;
@@ -44,6 +46,17 @@ public class EmployeeService {
             return ResponseEntity.ok(employee);
         } else {
             return ResponseEntity.badRequest().body(new ErrorMessage("Already in database"));
+        }
+    }
+
+    public ResponseEntity<?> removeUser(@RequestParam Long id) {
+        Optional<Employee> optionalEmployee = employeeRepository.findById(id);
+
+        if (optionalEmployee.isPresent()) {
+            employeeRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.badRequest().body(new ErrorMessage("User not found"));
         }
     }
 }

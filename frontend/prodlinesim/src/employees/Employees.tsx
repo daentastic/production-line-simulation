@@ -18,8 +18,17 @@ const Employees: React.FC = () => {
     }
 
     const handleRemoveEmployee = (id: number) => {
-
-
+        fetch(`http://localhost:8080/employee/delete-employee?id=${id}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error removing user");
+            }
+            setEmployees(prevEmployees => prevEmployees.filter(employee => employee.id !== id));
+        })
+        .catch(error => console.log("Error removing user: ", error));
     }
 
     useEffect(() => {
@@ -33,9 +42,9 @@ const Employees: React.FC = () => {
     return (
         <div id="employees">
             <h2>All Employees</h2>
-            <button onClick={handleNewEmployeeClick} 
-            className={newEmployeeField ? 'new-employee-clicked' : ''}>
-            {newEmployeeField ? 'Cancel' : 'New Employee'}
+            <button onClick={handleNewEmployeeClick}
+                className={newEmployeeField ? 'new-employee-clicked' : ''}>
+                {newEmployeeField ? 'Cancel' : 'New Employee'}
             </button>
             {newEmployeeField && <NewEmployee />}
             <table>
@@ -44,7 +53,8 @@ const Employees: React.FC = () => {
                         <th>ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Edit</th>
+                        <th>Station</th>
+                        <th>Manage Employee</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,7 +62,9 @@ const Employees: React.FC = () => {
                         <td>{employee.id}</td>
                         <td>{employee.firstName}</td>
                         <td>{employee.lastName}</td>
-                        <td><button onClick={() => {handleRemoveEmployee(employee.id)}}>Remove</button></td>
+                        <td><button onClick={() => 
+                            { handleRemoveEmployee(employee.id) }}>Remove
+                            </button></td>
                     </tr>
                     ))}
                 </tbody>
