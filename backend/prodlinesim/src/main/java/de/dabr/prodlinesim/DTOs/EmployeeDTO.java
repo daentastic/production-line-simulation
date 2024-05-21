@@ -12,6 +12,7 @@ public class EmployeeDTO {
 
     private String firstName;
     private String lastName;
+    private int stationId;
 
     
 

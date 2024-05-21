@@ -24,13 +24,14 @@ public class Employee {
     private String lastName;
 
     @ManyToOne
-    @JoinColumn(name = "station_id")
+    @JoinColumn(name = "station_name")
     private Station station;
 
     public Employee() {}
 
-    public Employee(String firstName, String lastName) {
+    public Employee(String firstName, String lastName, Station station) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.station = station;
     }
 }

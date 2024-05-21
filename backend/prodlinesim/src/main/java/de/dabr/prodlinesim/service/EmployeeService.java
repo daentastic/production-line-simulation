@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import de.dabr.prodlinesim.DTOs.EmployeeDTO;
 import de.dabr.prodlinesim.model.Employee;
+import de.dabr.prodlinesim.model.Station;
 import de.dabr.prodlinesim.repository.EmployeeRepository;
+import de.dabr.prodlinesim.repository.StationRepository;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.annotation.PostConstruct;
 
@@ -19,16 +21,23 @@ import jakarta.annotation.PostConstruct;
 public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final StationRepository stationRepository;
 
-    public EmployeeService(EmployeeRepository employeeRepository) {
+    public EmployeeService(EmployeeRepository employeeRepository, StationRepository stationRepository) {
         this.employeeRepository = employeeRepository;
+        this.stationRepository = stationRepository;
     }
 
     @PostConstruct
     public void addDefaultUsers() {
+        
+        Station generalAssembly = new Station("General Assembly");
+        stationRepository.save(generalAssembly);
+        
         employeeRepository.saveAll(Arrays.asList(
-                new Employee("Daniel", "Mueller"),
-                new Employee("Peter", "Schulze")));
+                new Employee("Daniel", "Mueller", generalAssembly),
+                new Employee("Stefan", "Kopp", generalAssembly),
+                new Employee("Peter", "Schulze", generalAssembly)));
     }
 
     public List<Employee> findAllEmployees() {

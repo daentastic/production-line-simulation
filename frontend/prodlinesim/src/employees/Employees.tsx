@@ -4,8 +4,15 @@ import NewEmployee from "./NewEmployee"
 
 const Employees: React.FC = () => {
 
+    interface Station {
+        employeeList: Employee[],
+        id: number, 
+        name: string
+    }
+
     interface Employee {
         id: number,
+        station: Station,
         firstName: string,
         lastName: string
     }
@@ -35,9 +42,10 @@ const Employees: React.FC = () => {
         fetch("http://localhost:8080/employee/show-all")
             .then(response => response.json())
             .then(data => {
+                console.log(data);
                 setEmployees(data);
             }).catch(error => console.log("Error fetching employees: ", error))
-    }, [handleNewEmployeeClick])
+    }, [])
 
     return (
         <div id="employees">
@@ -62,6 +70,7 @@ const Employees: React.FC = () => {
                         <td>{employee.id}</td>
                         <td>{employee.firstName}</td>
                         <td>{employee.lastName}</td>
+                        <td>{employee.station.name !== null ? employee.station.name : 'N/A'}</td>
                         <td><button onClick={() => 
                             { handleRemoveEmployee(employee.id) }}>Remove
                             </button></td>
