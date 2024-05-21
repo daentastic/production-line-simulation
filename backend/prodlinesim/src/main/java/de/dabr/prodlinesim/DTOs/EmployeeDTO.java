@@ -1,5 +1,6 @@
 package de.dabr.prodlinesim.DTOs;
 
+import de.dabr.prodlinesim.model.Station;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +13,7 @@ public class EmployeeDTO {
 
     private String firstName;
     private String lastName;
-    private int stationId;
+    private Station station;
 
     
 

@@ -2,6 +2,8 @@ package de.dabr.prodlinesim.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +23,7 @@ public class Station {
     private String name;
     
     @OneToMany(mappedBy = "station")
+    @JsonIgnore
     private List<Employee> employeeList;
 
     public Station () {}

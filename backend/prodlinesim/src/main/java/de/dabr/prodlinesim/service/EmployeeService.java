@@ -51,6 +51,7 @@ public class EmployeeService {
             Employee employee = new Employee();
             employee.setFirstName(employeeDTO.getFirstName());
             employee.setLastName(employeeDTO.getLastName());
+            employee.setStation(employeeDTO.getStation());
             employeeRepository.save(employee);
             return ResponseEntity.ok(employee);
         } else {

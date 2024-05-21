@@ -12,7 +12,7 @@ const Employees: React.FC = () => {
 
     interface Employee {
         id: number,
-        station: Station,
+        station?: Station,
         firstName: string,
         lastName: string
     }
@@ -70,10 +70,11 @@ const Employees: React.FC = () => {
                         <td>{employee.id}</td>
                         <td>{employee.firstName}</td>
                         <td>{employee.lastName}</td>
-                        <td>{employee.station.name !== null ? employee.station.name : 'N/A'}</td>
-                        <td><button onClick={() => 
-                            { handleRemoveEmployee(employee.id) }}>Remove
-                            </button></td>
+                        <td>{employee.station ? employee.station.name :'N/A'}</td>
+                        <td>
+                        <button>Change Station</button>
+                        <button className="remove-button" onClick={() => { handleRemoveEmployee(employee.id) }}>Remove</button>
+                        </td>
                     </tr>
                     ))}
                 </tbody>

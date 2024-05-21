@@ -44,6 +44,7 @@ button {
     margin-bottom: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-right: 5px;
 }
 
 .new-employee-clicked {
@@ -61,4 +62,8 @@ button:hover {
     border: none;
     background-color: #21262d;
     margin-right: 10px;
+}
+
+.remove-button {
+    color: #fa7970;
 }

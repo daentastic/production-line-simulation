@@ -3,6 +3,7 @@ import { useState } from "react";
 const NewEmployee: React.FC = () => {
     const [firstName, setFirstName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
+    const [station, setStation] = useState<string>('');
 
     const handleFirstNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFirstName(event.target.value);
@@ -12,12 +13,20 @@ const NewEmployee: React.FC = () => {
         setLastName(event.target.value)
     }
 
+    const handleStationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setStation(event.target.value)
+    }
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const employeeScheme = {
             firstName: firstName,
             lastName: lastName,
+            station: {
+                id: parseInt(station), 
+                name: String,
+            },
         };
 
         fetch("http://localhost:8080/employee/new-employee", {
@@ -48,6 +57,10 @@ const NewEmployee: React.FC = () => {
             <label>
                 Last Name:
                 <input type="text" value={lastName} onChange={handleLastNameChange}></input>
+            </label>
+            <label>
+                Station: 
+                <input type="number" value={station} onChange={handleStationChange}></input>
             </label>
             <button type="submit">Submit</button>
         </form>
