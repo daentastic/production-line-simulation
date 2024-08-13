@@ -15,6 +15,4 @@ public class EmployeeDTO {
     private String lastName;
     private Station station;
 
-    
-
 }

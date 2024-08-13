@@ -24,7 +24,7 @@ const NewEmployee: React.FC = () => {
             firstName: firstName,
             lastName: lastName,
             station: {
-                id: parseInt(station), 
+                id: parseInt(station),
                 name: String,
             },
         };
@@ -49,7 +49,7 @@ const NewEmployee: React.FC = () => {
     }
 
     return (
-        <form className="new-employee-label" onSubmit={handleSubmit}>
+        <form className="new-employee-label" onSubmit={() => {handleSubmit}}>
             <label>
                 First Name:
                 <input type="text" value={firstName} onChange={handleFirstNameChange}></input>
@@ -59,7 +59,7 @@ const NewEmployee: React.FC = () => {
                 <input type="text" value={lastName} onChange={handleLastNameChange}></input>
             </label>
             <label>
-                Station: 
+                Station:
                 <input type="number" value={station} onChange={handleStationChange}></input>
             </label>
             <button type="submit">Submit</button>

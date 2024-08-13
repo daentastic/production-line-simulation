@@ -17,9 +17,8 @@ import de.dabr.prodlinesim.DTOs.EmployeeDTO;
 import de.dabr.prodlinesim.model.Employee;
 import de.dabr.prodlinesim.service.EmployeeService;
 
-
 @RestController
-@RequestMapping("/employee")
+@RequestMapping(value = "/employee")
 @CrossOrigin(origins = "*")
 public class EmployeeController {
 
@@ -34,7 +33,7 @@ public class EmployeeController {
     public List<Employee> findAllEmployees() {
         return employeeService.findAllEmployees();
     }
-    
+
     @PostMapping("/new-employee")
     public ResponseEntity<?> addNewEmployee(@RequestBody EmployeeDTO employeeDTO) {
         return employeeService.addNewEmployee(employeeDTO);
@@ -45,8 +44,8 @@ public class EmployeeController {
         return employeeService.removeUser(id);
     }
 
-    @PutMapping("/start-working") 
+    @PutMapping("/start-working")
     public void startEmployeeWork() {
-    
+
     }
 }

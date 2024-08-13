@@ -30,10 +30,10 @@ public class EmployeeService {
 
     @PostConstruct
     public void addDefaultUsers() {
-        
+
         Station generalAssembly = new Station("General Assembly");
         stationRepository.save(generalAssembly);
-        
+
         employeeRepository.saveAll(Arrays.asList(
                 new Employee("Daniel", "Mueller", generalAssembly),
                 new Employee("Stefan", "Kopp", generalAssembly),
@@ -45,8 +45,9 @@ public class EmployeeService {
     }
 
     public ResponseEntity<?> addNewEmployee(@RequestBody EmployeeDTO employeeDTO) {
-        Optional<Employee> optionalEmployee = employeeRepository.findByFirstNameAndLastName(employeeDTO.getFirstName(), employeeDTO.getLastName());
-        
+        Optional<Employee> optionalEmployee = employeeRepository.findByFirstNameAndLastName(employeeDTO.getFirstName(),
+                employeeDTO.getLastName());
+
         if (!optionalEmployee.isPresent()) {
             Employee employee = new Employee();
             employee.setFirstName(employeeDTO.getFirstName());
